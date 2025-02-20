@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Página Web</title>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background-color: rgba(253, 115, 61, 0.925);
+            color: rgb(255, 255, 255);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header img {
+            height: 150px;
+        }
+        .contact-info {
+            display: flex;
+            align-items: center;
+        }
+        .contact-info div {
+            margin-right: 40px;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        .social-icons {
+            display: flex;
+            align-items: center;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        .social-icons img {
+            height: 24px;
+            margin-left: 10px;
+            transition: transform 0.3s ease; /* Transición para el efecto de palpitación */
+        }
+        .social-icons img:hover {
+            animation: pulse 1s infinite; /* Efecto de palpitación */
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        nav {
+            position: relative;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        nav::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('div inicio.png');
+            background-size: cover;
+            background-position: center;
+            filter: blur(5px);
+            z-index: -1;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            position: relative;
+            z-index: 10;
+        }
+        nav ul li {
+            position: relative;
+            margin-right: 20px;
+            z-index: 10;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+            font-size: 30px;
+            font-weight: bold;
+            transition: transform 0.3s ease; /* Transición para el aumento de tamaño */
+        }
+        nav ul li a:hover {
+            transform: scale(1.1); /* Aumenta el tamaño al pasar el cursor */
+        }
+        nav ul li ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: rgba(51, 51, 51, 0.9);
+            padding: 0;
+            z-index: 1000;
+        }
+        nav ul li:hover ul {
+            display: block;
+        }
+        nav ul li ul li {
+            margin: 0;
+            padding: 10px;
+            transition: background-color 0.3s ease; /* Transición para el cambio de color */
+        }
+        nav ul li ul li:hover {
+            background-color: rgba(253, 115, 61, 0.925); /* Cambia el color al pasar el cursor */
+        }
+        .body-section {
+            display: flex;
+            height: calc(100% - 160px);
+            min-height: calc(100vh - 160px);
+            z-index: 1;
+            position: relative;
+        }
+        .body-section .left, .body-section .middle, .body-section .right {
+            flex: 1;
+            padding: 20px;
+            transition: transform 0.3s ease; /* Transición para el aumento de tamaño */
+        }
+        .body-section .left:hover, .body-section .middle:hover, .body-section .right:hover {
+            transform: scale(1.05); /* Aumenta el tamaño al pasar el cursor */
+        }
+        .body-section .left {
+            background-color: #ffcccb;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto; /* Barra de desplazamiento si el contenido es demasiado grande */
+        }
+        .body-section .middle {
+            display: flex;
+            flex-direction: column;
+            background-color: #add8e6; 
+            overflow-y: auto; /* Barra de desplazamiento si el contenido es demasiado grande */
+        }
+        .body-section .middle .top-middle {
+            flex: 1;
+            background-color: #add8e6;
+        }
+        .body-section .middle .top-middle {
+            flex: 1;
+            background-color: #add8e6;
+            padding: 20px; /* Añade padding para separar el contenido */
+        }
+        .body-section .left ul {
+            margin-top: 10px; /* Reduce el margen superior del ul */
+            padding-left: 20px; /* Ajusta el padding izquierdo del ul */
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        .body-section .middle .top-middle ul {
+            margin-top: 10px; /* Reduce el margen superior del ul */
+            padding-left: 20px; /* Ajusta el padding izquierdo del ul */
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        .body-section .middle .divider {
+            height: 2px;
+            background-color: gray;
+        }
+        .body-section .right {
+            background-color: #d4db6a;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto; /* Barra de desplazamiento si el contenido es demasiado grande */
+        }
+        .body-section .right ul {
+            margin-top: 10px; /* Reduce el margen superior del ul */
+            padding-left: 20px; /* Ajusta el padding izquierdo del ul */
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        .body-section h1 {
+            font-family: 'Allura', cursive; /* Aplica la fuente Allura */
+            font-size: 45px;
+        }
+        .body-section h3 {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        footer img {
+            height: 50px;
+        }
+        footer .contact-info {
+            display: flex;
+            align-items: center;
+        }
+        footer .contact-info div {
+            margin-right: 20px;
+        }
+        footer .contact-info a {
+            color: #00f; /* Color azul para el enlace de Contacto */
+            text-decoration: none;
+        }
+        footer .footer-links {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Espacio entre los elementos */
+        }
+        footer .footer-links span {
+            margin-right: 10px; /* Espacio después del texto de copyright */
+        }
+        footer .footer-links a {
+            color: #00f; /* Color azul para los enlaces */
+            text-decoration: none;
+        }
+        footer .footer-links a:hover {
+            text-decoration: underline; /* Subrayado al pasar el cursor */
+        }
+        table {
+            width: 100%; /* Ancho de la tabla */
+            border-collapse: collapse; /* Unifica los bordes */
+            margin: 20px 0; /* Margen superior e inferior */
+        }
+        table, th, td {
+            border: 2px solid black; /* Borde negro */
+        }
+        th, td {
+            padding: 15px; /* Espacio dentro de las celdas */
+            text-align: left; /* Alineación del texto */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.jpeg" alt="Logo">
+        <div class="contact-info">
+            <div> <h3>Teléfono:</h3><hr> +34 663 24 54 26<hr> </div>
+            <div> <h3>Calle:</h3><hr> Avenida de Europa, Azuqueca de Henares<hr> </div>
+            <div> <h3>Horario:</h3><hr> 8:00 a 16:00 de Lunes a Viernes<hr> </div>
+        </div>
+        <div class="social-icons">
+            <h2> ¿Necesitas más información? </h2>
+            <a href="">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/479px-WhatsApp.svg.png" alt="WhatsApp">
+            </a>
+            <a href="">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1024px-Instagram_logo_2022.svg.png" alt="Instagram">
+            </a>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="web_principal.html">Inicio</a></li>
+            <li><a href="#">La Escuela</a>
+                <ul>
+                    <li><a href="matriculate.html">¡Matriculate!</a></li>
+                    <li><a href="la agenda.html">Agenda</a></li>
+                    <li><a href="higiene.html">Higiene</a></li>
+                    <li><a href="calendario.html">Calendario y Horarios</a></li>
+                    <li><a href="las clases.html">Las Clases</a></li>
+                    <li><a href="periodo de adaptación.html">Periodo de Adaptación</a></li>
+                </ul>
+            </li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+    <div class="body-section">
+        <div class="left"><h1><center>Actividades<hr></center></h1>
+            <ul>
+                <li>
+                    Desde Dédalo realizamos actividades diariamente para promover un correcto desarrollo de vuestros pequeños. ¡Aquí algunos ejemplos!
+                </li>
+            </ul>
+            <h3> <center>
+                ¡ATAR CORDONES!
+            </h3>
+            <img src="WhatsApp Image 2025-02-18 at 20.29.58.jpeg" alt="foto3">
+            </center>
+            <br>
+            <h3> <center> <hr>
+                <br>
+                ¡EXPLORANDO NUEVAS TEXTURAS Y FORMAS!
+            </h3>
+            <img src="sensorial.png" alt="foto4">
+            </center>
+            <br>
+            <h3> <center> <hr>
+                <br>
+                ¡APRENDIENDO LOS COLORES Y LOS NUMEROS!
+            </h3>
+            <img src="logico matr.jpg" alt="foto5">
+            </center>
+            <br>
+            <h3> <center> <hr>
+                <br>
+                ¡DESCUBRIMOS UN MUNDO NUEVO!
+            </h3>
+            <img src="luz-negra-fluorescente-.jpg" alt="foto5">
+            </center>
+            <br>
+            <h3> <center> <hr>
+                <br>
+                ¡COMO NOS GUSTA JUGAR Y COMPARTIR!
+            </h3>
+            <img src="ester-3.jpg" alt="foto6">
+            </center>
+        </div>
+
+        <div class="middle">
+            <div class="top-middle"><h1><center>¿Quienes Somos?<hr></center></h1>
+                <ul>
+                    <li>
+                        Somos la Escuela Infantil Dédalo, un centro dedicado a la enseñanza infantil que cuenta con un equipo profesional muy implicado que ha abierto sus puertas hace un año en Azuqueca de Henares, Guadalajara.
+                    </li>
+                </ul>
+                <center>
+                    <img src="unnamed.jpg" alt="foto1">
+                </center>
+                <h1><center>¿Porque elegir Dédalo?<hr></center></h1>
+                <ul>
+                    <li>
+                        Escoger una escuela infantil es un paso importante para nuestros pequeños y para nuestra tranquilidad.
+                    </li>
+                    <br>
+                    <li>
+                        Desde Dédalo queremos trasmitiros que somos un centro que cuenta con un increible equipo de profesionales con más de 10 años de experiencia. Nuestras prioridades son la enseñanza y el desarrollo de nuestros alumnos, con el fin de que se integren y sean en un futuro autónomos.
+                    </li>
+                    <br>
+                    <li>
+                        Os invitamos a recorrer nuestra página web, contactarnos mediante los diferentes canales o acudir a nuestas aulas, donde se les facilitará un reglamento y de esta manera obtener la máxima información posible.
+                    </li>
+                </ul>
+                <center>
+                    <img src="istockphoto-135385235-612x612.jpg" alt="foto2">
+                </center>
+            </div>
+        </div>
+
+        <div class="right"><h1><center>Alimentación<hr></center></h1>
+            <ul>
+                <li>
+                    Desde Dédalo queremos transmitir que la alimentación de los más pequeños es muy importante ya que tiene un fin educativo. El comedor no solo trata de cubrir las necesidades de ellos de forma sana y equilibrada sino que también tiene un fin comunicativo y que incluye distintos hábitos de higiene y convivencia con el resto de alumnos.
+                </li>
+                <br>
+                <center>
+                    <img src="comedor-e1442444283259.jpg" alt="foto1">
+                </center>
+                <br>
+                <li>
+                    En nuestro centro ofrecemos el servicio de aula matinal donde se les da un pequeño desayuno para aquellos alumnos que no hayan desayunado y el servicio de comedor donde ofrecemos un menú equilibrado y sano.
+                </li>
+                <br>
+                <center>
+                    <table>
+                    <caption> Horarios de Aula matinal y Comedor.
+                        <tr>
+                            <th><b> Horario de Aula matinal </b></td>
+                            <th><b> 8:00 am a 9:00 am </b></td>
+                        </tr>
+                        <tr>
+                            <th><b> Horario de Comedor </b></td>
+                            <th><b> 12:00 am a 13:00 pm </b></td>
+                        </tr>
+                    <caption>
+                    </table>
+                </center>
+                <br>
+                <li>
+                    El menú del comedor contará con el listado de alergias e intolerancias de los alumnos que previamente habrán adjuntado las familias mediante un diagnóstico médico. Recordamos que el comedor no adaptará ningún tipo de menú que no venga recomendado por el médico. En el tablón de nuestro centro se expondrá nuestro menú semanal. También está totalmente prohibido llevar comida elaborada desde el domicilio al centro, exceptuando la leche materna.
+                </li>
+                <br>
+                <center>
+                    <img src="450_1000.jpg" alt="foto1">
+                </center>
+            </ul>
+        </div>
+    </div>
+    <footer>
+        <img src="logo.jpeg" alt="Logo">
+        <div class="footer-links">
+            <span>© 2025 Escuela Dédalo.</span>
+            <a href="#">Aviso legal</a>
+            <a href="#">Política de Privacidad</a>
+        </div>
+    </footer>
+</body>
+</html>

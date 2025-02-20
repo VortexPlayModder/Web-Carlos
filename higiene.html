@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Higiene</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background-color: rgba(253, 115, 61, 0.925);
+            color: rgb(255, 255, 255);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header img {
+            height: 150px;
+        }
+        .contact-info {
+            display: flex;
+            align-items: center;
+        }
+        .contact-info div {
+            margin-right: 40px;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        .social-icons {
+            display: flex;
+            align-items: center;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        .social-icons img {
+            height: 24px;
+            margin-left: 10px;
+            transition: transform 0.3s ease; /* Transición para el efecto de palpitación */
+        }
+        .social-icons img:hover {
+            animation: pulse 1s infinite; /* Efecto de palpitación */
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        nav {
+            position: relative;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        nav::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('div inicio.png');
+            background-size: cover;
+            background-position: center;
+            filter: blur(5px);
+            z-index: -1;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            position: relative;
+            z-index: 10;
+        }
+        nav ul li {
+            position: relative;
+            margin-right: 20px;
+            z-index: 10;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+            font-size: 30px;
+            font-weight: bold;
+            transition: transform 0.3s ease; /* Transición para el aumento de tamaño */
+        }
+        nav ul li a:hover {
+            transform: scale(1.1); /* Aumenta el tamaño al pasar el cursor */
+        }
+        nav ul li ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: rgba(51, 51, 51, 0.9);
+            padding: 0;
+            z-index: 1000;
+        }
+        nav ul li:hover ul {
+            display: block;
+        }
+        nav ul li ul li {
+            margin: 0;
+            padding: 10px;
+            transition: background-color 0.3s ease; /* Transición para el cambio de color */
+        }
+        nav ul li ul li:hover {
+            background-color: rgba(253, 115, 61, 0.925); /* Cambia el color al pasar el cursor */
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        footer img {
+            height: 50px;
+        }
+        footer .contact-info {
+            display: flex;
+            align-items: center;
+        }
+        footer .contact-info div {
+            margin-right: 20px;
+        }
+        footer .contact-info a {
+            color: #00f; /* Color azul para el enlace de Contacto */
+            text-decoration: none;
+        }
+        footer .footer-links {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Espacio entre los elementos */
+        }
+        footer .footer-links span {
+            margin-right: 10px; /* Espacio después del texto de copyright */
+        }
+        footer .footer-links a {
+            color: #00f; /* Color azul para los enlaces */
+            text-decoration: none;
+        }
+        footer .footer-links a:hover {
+            text-decoration: underline; /* Subrayado al pasar el cursor */
+        }
+        table {
+            width: 100%; /* Ancho de la tabla */
+            border-collapse: collapse; /* Unifica los bordes */
+            margin: 20px 0; /* Margen superior e inferior */
+        }
+
+        table, th, td {
+            border: 2px solid black; /* Borde negro */
+        }
+        th, td {
+            padding: 15px; /* Espacio dentro de las celdas */
+            text-align: left; /* Alineación del texto */
+        }
+        /* Estilos para la segunda sección (formulario y fondo) */
+        .section-form {
+            position: relative;
+            padding: 40px;
+            background-image: 
+                linear-gradient(to right, 
+                rgb(255, 255, 255) 0%, 
+                rgba(255, 255, 255, 0) 80%, 
+                rgba(255, 255, 255, 0) 100%
+            ),
+                url('higiene-personal-para-ninos.jpg');
+            background-size: cover;
+            background-position: center;
+            color: rgb(0, 0, 0);
+            display: flex;
+        }
+        .form-container {
+            background: rgba(247, 223, 117, 0.9); /* Fondo blanco semitransparente */
+            padding: 40px;
+            max-width: 500px;
+            border-radius: 10px;
+            text-align: center;
+            transform: translateX(90px);
+        }
+        .form-container h2 {
+            color: black; /* Color negro para el h2 */
+        }
+        .form-container li {
+            text-align: justify;
+        }
+        .form-container input, .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+        }
+        .form-container button {
+            background-color: rgba(253, 115, 61, 0.925);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: rgba(253, 115, 61, 0.8);
+        }
+        p {
+            font-size: small; /* Tamaño de fuente pequeño */
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.jpeg" alt="Logo">
+        <div class="contact-info">
+            <div> <h3>Teléfono:</h3><hr> +34 663 24 54 26<hr> </div>
+            <div> <h3>Calle:</h3><hr> Avenida de Europa, Azuqueca de Henares<hr> </div>
+            <div> <h3>Horario:</h3><hr> 8:00 a 16:00 de Lunes a Viernes<hr> </div>
+        </div>
+        <div class="social-icons">
+            <h2> ¿Necesitas más información? </h2>
+            <a href="">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/479px-WhatsApp.svg.png" alt="WhatsApp">
+            </a>
+            <a href="">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1024px-Instagram_logo_2022.svg.png" alt="Instagram">
+            </a>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="web_principal.html">Inicio</a></li>
+            <li><a href="#">La Escuela</a>
+                <ul>
+                    <li><a href="matriculate.html">¡Matriculate!</a></li>
+                    <li><a href="la agenda.html">Agenda</a></li>
+                    <li><a href="higiene.html">Higiene</a></li>
+                    <li><a href="calendario.html">Calendario y Horarios</a></li>
+                    <li><a href="las clases.html">Las Clases</a></li>
+                    <li><a href="periodo de adaptación.html">Periodo de Adaptación</a></li>
+                </ul>
+            </li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+    <div class="section-form">
+        <div class="form-container">
+            <h1>La Higiene</h1>
+            <ul>
+                <li>
+                    Desde Escuela Infantil Dédalo queremos concienciar que la higiene es un elemento de aprendizaje muy importante dentro del aula y que desde el centro se busca de manera proactiva la enseñanza de buenas costumbre en higiene. Alguna de las medidas tomadas por el centro son:
+                    <ul>
+                        <br>
+                        <li>
+                            Una correcta limpieza de las manos.
+                        </li>
+                    </ul>
+                    <ul>
+                        <br>
+                        <li>
+                            El uso de cepillo de dientes.
+                        </li>
+                    </ul>
+                    <ul>
+                        <br>
+                        <li>
+                            El uso de babis (proporcionados por el propio centro al abonar la matricula).
+                        </li>
+                    </ul>
+                    <ul>
+                        <br>
+                        <li>
+                            El uso, limpieza y cambio correcto de pañales.
+                        </li>
+                    </ul>
+                    <ul>
+                        <br>
+                        <li>
+                            El empleo proactivo por parte del alumnado de toallitas y toallas. 
+                        </li>
+                    </ul>
+                    <ul>
+                        <br>
+                        <li>
+                            El uso de biberones propios y la esterilización a cargo del equipo docente.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <footer>
+        <img src="logo.jpeg" alt="Logo">
+        <div class="footer-links">
+            <span>© 2025 Escuela Dédalo.</span>
+            <a href="#">Aviso legal</a>
+            <a href="#">Política de Privacidad</a>
+        </div>
+    </footer>
+</body>
+</html>

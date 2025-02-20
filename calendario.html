@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario y Horarios</title>
+    <style>
+        /* Estilos generales */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Estilos del encabezado */
+        header {
+            background-color: rgba(253, 115, 61, 0.925);
+            color: rgb(255, 255, 255);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header img {
+            height: 150px;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info div {
+            margin-right: 40px;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+
+        .social-icons {
+            display: flex;
+            align-items: center;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+
+        .social-icons img {
+            height: 24px;
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons img:hover {
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        /* Estilos del menú de navegación */
+        nav {
+            position: relative;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('div inicio.png');
+            background-size: cover;
+            background-position: center;
+            filter: blur(5px);
+            z-index: -1;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            position: relative;
+            z-index: 10;
+        }
+
+        nav ul li {
+            position: relative;
+            margin-right: 20px;
+            z-index: 10;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+            font-size: 30px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            transform: scale(1.1);
+        }
+
+        nav ul li ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: rgba(51, 51, 51, 0.9);
+            padding: 0;
+            z-index: 1000;
+        }
+
+        nav ul li:hover ul {
+            display: block;
+        }
+
+        nav ul li ul li {
+            margin: 0;
+            padding: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li ul li:hover {
+            background-color: rgba(253, 115, 61, 0.925);
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer img {
+            height: 50px;
+        }
+
+        footer .contact-info {
+            display: flex;
+            align-items: center;
+        }
+
+        footer .contact-info div {
+            margin-right: 20px;
+        }
+
+        footer .contact-info a {
+            color: #00f;
+            text-decoration: none;
+        }
+
+        footer .footer-links {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        footer .footer-links span {
+            margin-right: 10px;
+        }
+
+        footer .footer-links a {
+            color: #00f;
+            text-decoration: none;
+        }
+
+        footer .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Estilos para la primera sección con filtro de niebla */
+        .section-fog {
+            position: relative;
+            height: 600px; /* Altura de la sección */
+            background-image: url('men-blog-2-928x448.png'); /* Ruta de la imagen */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .section-fog::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.3); /* Filtro de niebla suave */
+        }
+
+        .section-fog .title-box {
+            position: relative;
+            z-index: 1;
+            background-color: rgba(250, 102, 183, 0.897); /* Fondo semi-transparente */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .section-fog .title-box h2 {
+            margin: 0;
+            color: #333;
+            font-size: 2em;
+        }
+
+        /* Estilos para la segunda sección con fondo degradado */
+        .section-gradient {
+            background: linear-gradient(135deg, #d1f2d1, #fdfd96); /* Degradado verde-amarillo pastel */
+            padding: 40px 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .section-gradient .left-image {
+            flex: 1;
+            max-width: 50%;
+        }
+
+        .section-gradient .left-image img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .section-gradient .right-box {
+            flex: 1;
+            background-color: rgba(255, 255, 255, 0.616);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-gradient .right-box h3 {
+            margin: 0 0 10px;
+            color: #333;
+            font-size: 1.5em;
+        }
+
+        .section-gradient .right-box p {
+            margin: 0;
+            color: #555;
+        }
+        table {
+            width: 100%; /* Ancho de la tabla */
+            border-collapse: collapse; /* Unifica los bordes */
+            margin: 20px 0; /* Margen superior e inferior */
+            background-color: rgb(236, 185, 185);
+        }
+        table, th, td {
+            border: 2px solid black; /* Borde negro */
+        }
+        th, td {
+            padding: 15px; /* Espacio dentro de las celdas */
+            text-align: left; /* Alineación del texto */
+        }
+        p {
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.jpeg" alt="Logo">
+        <div class="contact-info">
+            <div> <h3>Teléfono:</h3><hr> +34 663 24 54 26<hr> </div>
+            <div> <h3>Calle:</h3><hr> Avenida de Europa, Azuqueca de Henares<hr> </div>
+            <div> <h3>Horario:</h3><hr> 8:00 a 16:00 de Lunes a Viernes<hr> </div>
+        </div>
+        <div class="social-icons">
+            <h2> ¿Necesitas más información? </h2>
+            <a href="">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/479px-WhatsApp.svg.png" alt="WhatsApp">
+            </a>
+            <a href="">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1024px-Instagram_logo_2022.svg.png" alt="Instagram">
+            </a>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="web_principal.html">Inicio</a></li>
+            <li><a href="#">La Escuela</a>
+                <ul>
+                    <li><a href="matriculate.html">¡Matriculate!</a></li>
+                    <li><a href="la agenda.html">Agenda</a></li>
+                    <li><a href="higiene.html">Higiene</a></li>
+                    <li><a href="calendario.html">Calendario y Horarios</a></li>
+                    <li><a href="las clases.html">Las Clases</a></li>
+                    <li><a href="periodo de adaptación.html">Periodo de Adaptación</a></li>
+                </ul>
+            </li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Sección con filtro de niebla y título -->
+    <div class="section-fog">
+        <div class="title-box">
+            <h1><center>Los Horarios</center></h1>
+            <ul>
+                <li>
+                    En Escuela Infantil Dédalo contamos con 3 horarios de recogida:
+                </li>
+            </ul>
+            <center>
+                <table>
+                    <tr>
+                        <th><b> Primera recogida </b></td>
+                        <th><b> 11:45 am a 12:00 am </b></td>
+                    </tr>
+                    <tr>
+                        <th><b> Segunda recogida </b></td>
+                        <th><b> 13:00 pm a 13:15 pm </b></td>
+                    </tr>
+                    <tr>
+                        <th><b> Tercera recogida </b></td>
+                        <th><b> 15:45 pm a 16:00 pm </b></td>
+                    </tr>
+                </table>
+            </center>
+            <br>
+            <ul>
+                <li>
+                    Los horarios referentes al comedor y aula matinal son:
+                </li>
+            </ul>
+            <center>
+                <table>
+                    <tr>
+                        <th><b> Horario de Aula matinal </b></td>
+                        <th><b> 8:00 am a 9:00 am </b></td>
+                    </tr>
+                    <tr>
+                        <th><b> Horario de Comedor </b></td>
+                        <th><b> 12:00 am a 13:00 pm </b></td>
+                    </tr>
+                </table>
+            </center>
+            <br>
+        </div>
+    </div>
+
+    <!-- Sección con fondo degradado y contenido dividido -->
+    <div class="section-gradient">
+        <div class="left-image">
+            <img src="3.png" alt="Foto de la sección">
+        </div>
+        <div class="right-box">
+            <h1>Calendario Escolar</h1>
+            <p>
+                A mano izquierda observamos el Calendario Escolar del periodo 2024-2025. En él se indican en color marrón que día comenzarán las clases y que día acaban, en azul los días festivos tanto nacionales como locales y en rojo aquellos días no lectivos que sería todo el mes de agosto por periodo vacacional y fines de semana.
+            </p>
+            <br>
+            <p>
+                A continuación dispondremos un listado de los días de comienzo y cierre de clases, festivos y no lectivos para mayor aclaración:
+            </p>
+            <ul>
+                <li style="color: brown;">
+                    2 de septiembre comienzo de clases
+                </li>
+                <br>
+                <li style="color: blue;">
+                    16 de septiembre, festivo local
+                </li>
+                <br>
+                <li style="color: blue;">
+                    1 de noviembre, Día de Todos los Santos
+                </li>
+                <br>
+                <li style="color: blue;">
+                    15 de noviembre, Día de la Enseñanza
+                </li>
+                <br>
+                <li style="color: blue;">
+                    6 de diciembre, Día de la Constitución Española
+                </li>
+                <br>
+                <li style="color: blue;">
+                    25 de diciembre, Navidad
+                </li>
+                <br>
+                <li style="color: blue;">
+                    31 de diciembre, Nochevieja
+                </li>
+                <br>
+                <li style="color: blue;">
+                    3 de marzo,puente de Carnaval
+                </li>
+                <br>
+                <li style="color: blue;">
+                    4 de marzo, Carnaval
+                </li>
+                <br>
+                <li style="color: blue;">
+                    17 y 18 de abril, Jueves y Viernes Santo
+                </li>
+                <br>
+                <li style="color: blue;">
+                    1 de mayo, Día del Trabajador
+                </li>
+                <br>
+                <li style="color: blue;">
+                    15 de mayo, festivo local
+                </li>
+                <br>
+                <li style="color: blue;">
+                    19 de junio, Fiesta del Corpus Christi
+                </li>
+                <br>
+                <li style="color: brown;">
+                    31 de julio, final de clases
+                </li>
+                <br>
+                <li style="color: red;">
+                    Agosto, periodo vacacional
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <img src="logo.jpeg" alt="Logo">
+        <div class="footer-links">
+            <span>© 2025 Escuela Dédalo.</span>
+            <a href="#">Aviso legal</a>
+            <a href="#">Política de Privacidad</a>
+        </div>
+    </footer>
+</body>
+</html>

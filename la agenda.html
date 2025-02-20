@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background-color: rgba(253, 115, 61, 0.925);
+            color: rgb(255, 255, 255);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header img {
+            height: 150px;
+        }
+        .contact-info {
+            display: flex;
+            align-items: center;
+        }
+        .contact-info div {
+            margin-right: 40px;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        .social-icons {
+            display: flex;
+            align-items: center;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        .social-icons img {
+            height: 24px;
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+        .social-icons img:hover {
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        nav {
+            position: relative;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        nav::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('div inicio.png');
+            background-size: cover;
+            background-position: center;
+            filter: blur(5px);
+            z-index: -1;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            position: relative;
+            z-index: 10;
+        }
+        nav ul li {
+            position: relative;
+            margin-right: 20px;
+            z-index: 10;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+            font-size: 30px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        nav ul li a:hover {
+            transform: scale(1.1);
+        }
+        nav ul li ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: rgba(51, 51, 51, 0.9);
+            padding: 0;
+            z-index: 1000;
+        }
+        nav ul li:hover ul {
+            display: block;
+        }
+        nav ul li ul li {
+            margin: 0;
+            padding: 10px;
+            transition: background-color 0.3s ease;
+        }
+        nav ul li ul li:hover {
+            background-color: rgba(253, 115, 61, 0.925);
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        footer img {
+            height: 50px;
+        }
+        footer .contact-info {
+            display: flex;
+            align-items: center;
+        }
+        footer .contact-info div {
+            margin-right: 20px;
+        }
+        footer .contact-info a {
+            color: #00f;
+            text-decoration: none;
+        }
+        footer .footer-links {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        footer .footer-links span {
+            margin-right: 10px;
+        }
+        footer .footer-links a {
+            color: #00f;
+            text-decoration: none;
+        }
+        footer .footer-links a:hover {
+            text-decoration: underline;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 2px solid black;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+        /* Estilos para el contenido principal */
+        .main-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #fdfd96, #a2d5f2, #ff9a9e); /* Gradiente en el main-content */
+            min-height: calc(100vh - 300px); /* Asegura que ocupe todo el espacio disponible */
+        }
+        .header-box {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header-box h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: #333;
+        }
+        .header-box p {
+            font-size: 1.2em;
+            margin: 10px 0 0;
+            color: #555;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Cambiado a 3 columnas */
+            gap: 60px;
+        }
+        .gallery-item {
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-item img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 30px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .gallery-item h3 {
+            font-size: 1.2em;
+            margin: 10px 0 0;
+            color: #333;
+        }
+        .gallery-item:hover {
+            transform: scale(1.1); /* Zoom del contenedor */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1); /* Zoom de la imagen */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.jpeg" alt="Logo">
+        <div class="contact-info">
+            <div> <h3>Teléfono:</h3><hr> +34 663 24 54 26<hr> </div>
+            <div> <h3>Calle:</h3><hr> Avenida de Europa, Azuqueca de Henares<hr> </div>
+            <div> <h3>Horario:</h3><hr> 8:00 a 16:00 de Lunes a Viernes<hr> </div>
+        </div>
+        <div class="social-icons">
+            <h2> ¿Necesitas más información? </h2>
+            <a href="">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/479px-WhatsApp.svg.png" alt="WhatsApp">
+            </a>
+            <a href="">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1024px-Instagram_logo_2022.svg.png" alt="Instagram">
+            </a>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="web_principal.html">Inicio</a></li>
+            <li><a href="#">La Escuela</a>
+                <ul>
+                    <li><a href="matriculate.html">¡Matriculate!</a></li>
+                    <li><a href="la agenda.html">Agenda</a></li>
+                    <li><a href="higiene.html">Higiene</a></li>
+                    <li><a href="calendario.html">Calendario y Horarios</a></li>
+                    <li><a href="las clases.html">Las Clases</a></li>
+                    <li><a href="periodo de adaptación.html">Periodo de Adaptación</a></li>
+                </ul>
+            </li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+    <div class="main-content">
+        <div class="header-box">
+            <h1>¡NUESTRA AGENDA!</h1>
+            <p>Aquí os presentamos nuestra agenda escolar que os distribuiremos con el abono de la matricula y que será una herramienta de comunicación entre las familias y la escuela. </p>
+        </div>
+        <div class="gallery">
+            <div class="gallery-item">
+                <h3>PORTADA</h3>
+                <img src="1.png" alt="Modelo 1">
+            </div>
+            <div class="gallery-item">
+                <h3>DATOS PERSONALES</h3>
+                <img src="2.png" alt="Modelo 2">
+            </div>
+            <div class="gallery-item">
+                <h3>CALENDARIO ESCOLAR</h3>
+                <img src="3.png" alt="Modelo 3">
+            </div>
+            <div class="gallery-item">
+                <h3>DIARIO</h3>
+                <img src="4.png" alt="Modelo 4">
+            </div>
+            <div class="gallery-item">
+                <h3>RESUMEN SEMANAL</h3>
+                <img src="9.png" alt="Modelo 5">
+            </div>
+            <div class="gallery-item">
+                <h3>AUTORIZACIONES</h3>
+                <img src="10.png" alt="Modelo 6">
+            </div>
+        </div>
+    </div>
+    <footer>
+        <img src="logo.jpeg" alt="Logo">
+        <div class="footer-links">
+            <span>© 2025 Escuela Dédalo.</span>
+            <a href="#">Aviso legal</a>
+            <a href="#">Política de Privacidad</a>
+        </div>
+    </footer>
+</body>
+</html>
